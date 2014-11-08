@@ -1,7 +1,7 @@
 (ns cljs-firmata.core
     (:require [cljs.nodejs :as nodejs]
               [firmata.core :as f]
-              [firmata.util :as futil]
+              [firmata.util :as futil :refer [detect-arduino-port]]
               [firmata.receiver :as r]
               [cljs.core.async :as a :refer [timeout <!]])
     (:require-macros [cljs.core.async.macros :refer [go]]))
@@ -16,7 +16,7 @@
 
 (defn -main [& args]
   (let [blink-time (atom (or (first args) 1000))]
-    (futil/detect-arduino-port (fn [port]
+    (detect-arduino-port (fn [err port]
       (if port
         (f/open-serial-board port (fn [board]
       ; (f/open-network-board "192.168.2.100" 5000 (fn [board]
@@ -42,6 +42,6 @@
               (<! (timeout @blink-time))
 
               (recur)))))
-        (println "No arduino port detected"))))))
+        (println "No arduino port detected: " (if err err "check connection")))))))
 
 (set! *main-cli-fn* -main)
