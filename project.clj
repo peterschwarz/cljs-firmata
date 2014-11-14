@@ -4,7 +4,7 @@
 
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/clojurescript "0.0-2311"]
-                 [clj-firmata "2.0.0-SNAPSHOT"]]
+                 [clj-firmata "2.0.0"]]
 
   :plugins [[lein-cljsbuild "1.0.4-SNAPSHOT"]
             [org.bodil/lein-noderepl "0.1.11"]]
