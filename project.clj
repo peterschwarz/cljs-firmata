@@ -2,14 +2,20 @@
   :description "FIXME: write this!"
   :url "http://example.com/FIXME"
 
-  :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-2311"]
-                 [clj-firmata "2.0.0"]]
+  :dependencies [[org.clojure/clojure "1.7.0-RC2"]
+                 [org.clojure/clojurescript "0.0-3308"]
+                 [clj-firmata "2.1.1-SNAPSHOT"]]
 
-  :plugins [[lein-cljsbuild "1.0.4-SNAPSHOT"]
-            [org.bodil/lein-noderepl "0.1.11"]]
+  :plugins [[lein-cljsbuild "1.0.4"]
+            [lein-npm "0.5.0"]] 
 
   :hooks [leiningen.cljsbuild]
+
+  :node-dependencies [[serialport "1.7.4"]]
+
+  :main "run.js"
+
+  :clean-targets ["out"]
 
   :source-paths ["src"]
 
