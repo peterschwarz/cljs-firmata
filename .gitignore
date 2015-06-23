@@ -11,3 +11,5 @@ node_modules/
 
 
 *.sublime-*
+*.swp
+npm-debug.log
