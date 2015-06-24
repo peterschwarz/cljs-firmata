@@ -32,7 +32,8 @@
 
     (f/set-pin-mode board pin :output)
 
-    (println "connected to board " (f/firmware board))
+    (println "connected to board:" (f/firmware board)
+             "\nversion:" (f/version board))
     (go 
       (loop []
         (let [blink-time (:blink-time @app-state)]
@@ -50,6 +51,6 @@
   (when-let [time-in-ms (first args)]
     (swap! app-state assoc :blink-time (js/parseInt time-in-ms)))
 
-  (f/open-serial-board "/dev/cu.usbmodem1421" blink-board :reset-on-connect? true))
+  (f/open-serial-board :auto-detect  blink-board :reset-on-connect? true))
 
 (set! *main-cli-fn* -main)
